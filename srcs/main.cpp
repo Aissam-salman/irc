@@ -1,6 +1,8 @@
 #include "irc.hpp"
+#include <iostream>
 
 int main(void)
 {
-return 0;
+	std::cout << "Hello from irc" << std::endl;
+	return 0;
 }

@@ -16,6 +16,8 @@ $(NAME): $(OBJS)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
+srcs/main.o: includes/irc.hpp
+
 clean:
 	rm -f $(OBJS)
 

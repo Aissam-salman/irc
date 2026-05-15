@@ -6,7 +6,7 @@
 /*   By: alamjada <alamjada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 18:43:55 by alamjada          #+#    #+#             */
-/*   Updated: 2026/05/15 09:38:10 by alamjada         ###   ########.fr       */
+/*   Updated: 2026/05/15 11:45:33 by alamjada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,6 @@ int main(int ac, char **av) {
     return 1;
   }
 
-  // one client
-  // while (true) {
-  //   int client = accept(serverFd, NULL, NULL);
-  //   if (client == -1) {
-  //     // Non-blocking : pas de client dispo, on continue
-  //     if (errno == EAGAIN || errno == EWOULDBLOCK)
-  //       continue;
-  //     std::cerr << "Error: accept: " << strerror(errno) << std::endl;
-  //     break;
-  //   }
-  //   char buffer[1024] = {0};
-  //   recv(client, buffer, sizeof(buffer), 0);
-  //   std::cout << "Message: " << buffer << std::endl;
-  //   close(client);
-  // }
-
   // poll
   struct pollfd poll_fd;
   poll_fd.fd = serverFd;
@@ -101,7 +85,7 @@ int main(int ac, char **av) {
     }
     for (size_t i = 0; i < _fds.size(); i++) {
       // nothing to read in this fd
-      if (!(_fds[i].revents && POLLIN))
+      if (!(_fds[i].revents & POLLIN))
         continue;
 
       // new client
